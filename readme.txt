@@ -1,0 +1,8 @@
+Open up your favorite web browser and browse to: http://localhost:3000/api/oauth2/authorize?client_id=this_is_my_id&response_type=code&redirect_uri=http://localhost:3000. If you used a different client id, then change it in the query string. Also, if you are running on a different port, be sure to change that in both places. When prompted, enter your username and password.
+
+
+This is part of the tutorial where we are hacking things together a bit. Normally with OAuth2 you would have an endpoint in the application requesting access to a user’s account. That is the query string redirect_uri that we supplied. So when a user grants access, that URI is requested and passed the authorization code. This then allows the requesting application to exchange that code for an access token.
+
+To continue this tutorial, we will fake an application server using Postman. Go ahead and copy the authorization code from the query string code. Mine in this example would be S7VlbvRQW1aIC5X5.
+
+In Postman, we will want to POST to http://localhost:3000/api/oauth2/token, set the Basic Auth username and password to the client id and client secret for your application client, add set post data values code, grant_type, and redirect_uri. Code needs to be set the code you copied from the browser request. Grant_type needs to be set to authorization_code because that is the type we are using. Redirect_uri needs to be set to the same redirect_uri you used in the authorization code request.
